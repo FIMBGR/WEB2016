@@ -1,0 +1,9 @@
+#table-container{
+ position: relative;
+  width: 400px;
+ height: 400px;
+ outline: solid;
+ outline-width: 1px;
+
+
+}
