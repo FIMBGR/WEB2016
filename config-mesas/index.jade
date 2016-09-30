@@ -1,0 +1,36 @@
+doctype html
+html
+  head
+    title Configuración de Distribución
+    script(type='text/javascript', src='src/js/dragndrop.js')
+    link(rel='stylesheet', type='text/css', href='src/css/config-tables.css')
+  body
+    #table-container.tablecontainer(ondragenter='return enter(event)', ondragover='return over(event)', ondragleave='return leave(event)', ondrop='return drop(event)')
+
+    script(type='text/javascript').
+      function addMesita() {
+      var div = document.createElement("div");
+      div.className = "ejemplo";
+      div.innerHTML = '<img id="mesita' + contador + '" src="src/images/tables/square/s2.png" height="32" width="32" draggable="true" ondragstart="start(event)">'
+      document.getElementById('draggableElements-container').appendChild(div);
+      contador = contador+1;
+      }
+
+      function clicked_table() {
+        console.log("HEY");
+      }
+
+    #draggableElements-container
+      img#s2(src='src/images/tables/square/s2.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#s3(src='src/images/tables/square/s3.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#s4(src='src/images/tables/square/s4.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#s6(src='src/images/tables/square/s6.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#s8(src='src/images/tables/square/s8.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c2(src='src/images/tables/circle/c2.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c3(src='src/images/tables/circle/c3.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c4(src='src/images/tables/circle/c4.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c5(src='src/images/tables/circle/c5.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c6(src='src/images/tables/circle/c6.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c7(src='src/images/tables/circle/c7.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+      img#c8(src='src/images/tables/circle/c8.png', draggable='true', ondragstart='start(event)', onclick="clicked_table()", class="c_tables")
+    button(onclick='addMesita()')  Add Mesita 

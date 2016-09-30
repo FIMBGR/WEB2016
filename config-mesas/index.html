@@ -1,48 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Configuración de Distribución</title>
-	<script type="text/javascript" src="src/js/dragndrop.js"></script>
-	<link rel="stylesheet" type="text/css" href="src/css/config-tables.css">
-</head>
-<body>
-
-<div id="table-container" class="tablecontainer" 
-		ondragenter="return enter(event)" ondragover="return over(event)" 
-		ondragleave="return leave(event)" ondrop="return clonar(event)">
-</div>
-
-<script type="text/javascript">
-	
-	function addMesita() {
-		var div = document.createElement("div");
-		div.className = "ejemplo";
-		div.innerHTML = '<img id="mesita' + contador + '" src="src/images/tables/square/s2.png" height="32" width="32" draggable="true" ondragstart="start(event)">'
-		document.getElementById('draggableElements-container').appendChild(div);
-		contador = contador+1;
-	}
-
-	function addMesita2() {
-		
-	}
-</script>
-
-<div id="draggableElements-container">
-	<img src="src/images/tables/square/s3.png" id="s3" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/square/s2.png" id="s2" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/square/s4.png" id="s4" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/square/s6.png" id="s6" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/square/s8.png" id="s8" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c2.png" id="c2" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c3.png" id="c3" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c4.png" id="c4" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c5.png" id="c5" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c6.png" id="c6" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c7.png" id="c7" draggable="true" ondragstart="start(event)">
-	<img src="src/images/tables/circle/c8.png" id="c8" draggable="true" ondragstart="start(event)">
-</div>
-<button onclick="addMesita()"> Add Mesita </button>
-
-
-</body>
+  <head>
+    <title>Configuración de Distribución</title>
+    <script type="text/javascript" src="src/js/dragndrop.js"></script>
+    <link rel="stylesheet" type="text/css" href="src/css/config-tables.css">
+  </head>
+  <body>
+    <div id="table-container" ondragenter="return enter(event)" ondragover="return over(event)" ondragleave="return leave(event)" ondrop="return drop(event)" class="tablecontainer"></div>
+    <script type="text/javascript">
+      function addMesita() {
+      var div = document.createElement("div");
+      div.className = "ejemplo";
+      div.innerHTML = '<img id="mesita' + contador + '" src="src/images/tables/square/s2.png" height="32" width="32" draggable="true" ondragstart="start(event)">'
+      document.getElementById('draggableElements-container').appendChild(div);
+      contador = contador+1;
+      }
+      
+      function clicked_table() {
+        console.log("HEY");
+      }
+      
+    </script>
+    <div id="draggableElements-container"><img id="s2" src="src/images/tables/square/s2.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="s3" src="src/images/tables/square/s3.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="s4" src="src/images/tables/square/s4.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="s6" src="src/images/tables/square/s6.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="s8" src="src/images/tables/square/s8.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c2" src="src/images/tables/circle/c2.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c3" src="src/images/tables/circle/c3.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c4" src="src/images/tables/circle/c4.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c5" src="src/images/tables/circle/c5.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c6" src="src/images/tables/circle/c6.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c7" src="src/images/tables/circle/c7.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"><img id="c8" src="src/images/tables/circle/c8.png" draggable="true" ondragstart="start(event)" onclick="clicked_table()" class="c_tables"></div>
+    <button onclick="addMesita()"> Add Mesita </button>
+  </body>
 </html>

@@ -1,18 +1,21 @@
 	contador = 0; // Variable global para tener poder poner un id unico a cada elemento cuando se clona.
+        
         function start(e) {
             e.dataTransfer.effecAllowed = 'move'; 
             e.dataTransfer.setData("Data", e.target.id); 
-            e.dataTransfer.setDragImage(e.target, 0, 0); 
-            e.target.style.opacity = '0.4';
+            console.log(document.getElementById(e.target.id).offsetHeight);
+            e.dataTransfer.setDragImage(e.target, document.getElementById(e.target.id).offsetHeight,document.getElementById(e.target.id).offsetWidth); 
+            e.target.style.opacity = "1";
         }
 
         function end(e){
-            e.target.style.opacity = '1'; 
+            document.getElementById(draggedElement).style.opacity = "1";
+
             e.dataTransfer.clearData("Data");
         }
 
         function enter(e) {
-            e.target.style.border = '3px dotted #555'; 
+            
         }
 
         function leave(e) {
@@ -20,20 +23,22 @@
         }
 
         function over(e) {
-            var draggedElement = e.dataTransfer.getData("Data"); 
+            var draggedElement = e.dataTransfer.getData("Data");
+
             var id = e.target.id;
-             e.target.style.opacity = '1';
             return false; 
         }
 
         function drop(e){
-        	//alert(e.target.id);
-            var draggedElement = e.dataTransfer.getData("Data"); 
-            document.getElementById(e.target.id).appendChild(document.getElementById(draggedElement));
-            e.target.style.border = ''; 
-            document.getElementById(draggedElement).style.opacity = "1";
 
-            tamContX = document.getElementById(e.target.id).offsetWidth;
+            var draggedElement = e.dataTransfer.getData("Data"); 
+            document.getElementById(draggedElement).style.opacity = "1";
+            e.target.style.border = '';
+
+            console.log("Dragged: " + draggedElement);
+            console.log("Target: " + e.target.id);
+
+            tamContX = document.getElementById(e.target.id).offsetWidth; 
             tamContY = document.getElementById(e.target.id).offsetHeight;
             posXCont = document.getElementById(e.target.id).offsetLeft;
             posYCont = document.getElementById(e.target.id).offsetTop;
@@ -43,7 +48,6 @@
 
             x = e.layerX;
             y = e.layerY;
-            //alert(x + " " + y + " - " + tamContX + " " + tamContY + " - " + + tamElemX + " " + tamElemY + " - " + posXCont + " " + posYCont );
             if (posXCont + tamContX <= x + tamElemX){
                 x = tamContX - tamElemX;
             }
@@ -51,9 +55,28 @@
                 y = tamContY - tamElemY;   
             }
 
-            document.getElementById(draggedElement).style.position = "absolute";
-            document.getElementById(draggedElement).style.left = x + "px";
-            document.getElementById(draggedElement).style.top = y + "px";
+            if(document.getElementById(draggedElement).parentNode.id!="table-container"){
+                var clonedElement = document.getElementById(draggedElement).cloneNode(true); // Se clona el elemento
+                
+                clonedElement.id = "ClonedElement" + contador; // Se cambia el id porque tiene que ser unico
+                
+                console.log("Cloned: " + clonedElement.id);
+                contador += 1;  
+                clonedElement.style.position = "absolute";  // Se posiciona de forma "normal" (Sino habria que cambiar las coordenadas de la posición)  
+                console.log(clonedElement.style.height);
+                clonedElement.style.left = x-tamElemX + "px";
+                clonedElement.style.top = y-tamElemY + "px";
+                clonedElement.style.opacity = "1";
+                e.target.appendChild(clonedElement);
+            }
+            else{
+                document.getElementById(e.target.id).appendChild(document.getElementById(draggedElement));
+                document.getElementById(draggedElement).style.position = "absolute";
+                document.getElementById(draggedElement).style.left = x + "px";
+                document.getElementById(draggedElement).style.top = y + "px";
+            }
+
+            
         }
 
       
@@ -64,6 +87,7 @@
         }
 
         function clonar(e){
+
             alert(e.dataTransfer.getData("Data"));
             var draggedElement = e.dataTransfer.getData("Data"); // Elemento arrastrado
         // Dejamos la opacidad a su estado anterior para copiar el elemento igual que era antes
@@ -92,7 +116,7 @@
             clonedElement.style.position = "absolute";  // Se posiciona de forma "normal" (Sino habria que cambiar las coordenadas de la posición)  
             clonedElement.style.left = x + "px";
             clonedElement.style.top = y + "px";
-            
+            clonedElement.style.opacity = "1";
 
 
             e.target.appendChild(clonedElement); // Se añade el elemento clonado
